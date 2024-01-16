@@ -11,8 +11,11 @@ function App() {
 
         const formData = new FormData();
         formData.append('links', links);
-        if (file1) formData.append('files', file1);
-
+        if (file1 && file1.length > 0) {
+            for (let i = 0; i < file1.length; i++) {
+                formData.append('files', file1[i]);
+            }
+        }
         try {
             const response = await axios.post('https://chat-api.cryptoslam.dev/post_content', formData, {
                 headers: {
